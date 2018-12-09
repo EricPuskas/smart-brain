@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 
-class Register extends React.Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +20,25 @@ class Register extends React.Component {
 
   onPasswordChange = event => {
     this.setState({ password: event.target.value });
+  };
+
+  onSubmitRegister = () => {
+    fetch("http://localhost:3000/register", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name
+      })
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user.id) {
+          this.props.loadUser(user);
+          this.props.onRouteChange("home");
+        }
+      });
   };
 
   render() {
@@ -69,7 +88,7 @@ class Register extends React.Component {
             </fieldset>
             <div className="lh-copy mt3">
               <input
-                onClick={() => onRouteChange("home")}
+                onClick={this.onSubmitRegister}
                 className="b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Register"
