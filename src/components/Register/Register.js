@@ -97,7 +97,7 @@ class Register extends Component {
             <div className="mv3">
               <p
                 onClick={() => onRouteChange("signin")}
-                className="f6 link dim white db pointer"
+                className="f5 link dim white db pointer"
               >
                 Sign in
               </p>
