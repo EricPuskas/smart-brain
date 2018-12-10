@@ -18,7 +18,7 @@ class Signin extends Component {
   };
 
   onSubmitSignIn = () => {
-    fetch("https://thawing-fortress-44323.herokuapp.com/signin", {
+    fetch(`${process.env.REACT_APP_API}/signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
