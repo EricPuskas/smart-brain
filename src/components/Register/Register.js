@@ -23,7 +23,7 @@ class Register extends Component {
   };
 
   onSubmitRegister = () => {
-    fetch(`https://thawing-fortress-44323.herokuapp.com/register`, {
+    fetch(`${process.env.REACT_APP_API}/register`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
